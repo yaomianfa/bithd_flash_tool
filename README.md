@@ -1,3 +1,7 @@
 # bithd_flash_tool
+
 This is a flash tool for bithd
-compiling environment : Qt5.14.1
+
+Compiling environment : Qt5.14.1
+
+Support the RAZOR and BITHD
