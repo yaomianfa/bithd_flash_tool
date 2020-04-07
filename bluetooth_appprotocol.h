@@ -116,6 +116,7 @@ private slots:
     void unready();
     void UpLoadError(QString Error);
     void setProgresslabel(QString);
+    void  onLogicalDotsPerInchChanged(qreal dpi);
 public:
     bool statusACK=true;
     void(BluetoothAppProtocol::*AckF)(int)=NULL;
@@ -124,8 +125,6 @@ private:
     Ui::BluetoothAppProtocol *ui;
     UpLoad * upload;
     bool needtowACK=false;
-
-
 };
 
 #endif // BLUETOOTHAPPPROTOCOL_H

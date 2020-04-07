@@ -1,14 +1,30 @@
 ﻿#include "bluetooth_appprotocol.h"
 #include "ui_bluetooth_appprotocol.h"
+#include <QScreen>
+#include <QProcess>
 BluetoothAppProtocol::BluetoothAppProtocol(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::BluetoothAppProtocol)
 {
 
     ui->setupUi(this);
+    setFixedSize(this->width(),this->height());
+    QList<QScreen*> screens = QApplication::screens();
+    if (screens.size() > 0) {
+            QScreen* screen = screens[0];
+            connect(screen, &QScreen::logicalDotsPerInchChanged, this, &BluetoothAppProtocol::onLogicalDotsPerInchChanged);
+    }
+
     ack_time=new QTimer(this);
     connect(ack_time,SIGNAL(timeout()),this,SLOT(BluetoothWork()));
     ack_time->start(20);
+
+}
+void BluetoothAppProtocol::onLogicalDotsPerInchChanged(qreal dpi)
+{
+    qApp->quit();
+    QProcess::startDetached(qApp->applicationFilePath(),QStringList());
+
 }
 
 BluetoothAppProtocol::~BluetoothAppProtocol()
