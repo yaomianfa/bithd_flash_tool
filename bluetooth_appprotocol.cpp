@@ -63,7 +63,7 @@ void BluetoothAppProtocol::closeOled(int mode=0){
 void BluetoothAppProtocol::setup_time_f(int mode=0){
     if(mode==0){
         AckF=&BluetoothAppProtocol::setup_time_f;
-        hwp->communicationBluetooth.label[0]=hwp->communicationBluetooth.label[0]++;;
+        hwp->communicationBluetooth.label[0]=hwp->communicationBluetooth.label[0]++;
         hwp->communicationBluetooth.cmd_id[0]=2; //进入setupf
         hwp->communicationBluetooth.data[0]=setup_time;
 
@@ -72,12 +72,12 @@ void BluetoothAppProtocol::setup_time_f(int mode=0){
         QDate current_date =QDate::currentDate();
         time_union_t time;
    //     time_union_t *time=(time_union_t *)&(hwp->communicationBluetooth.data[1]);
-        time.time.seconds=current_time.second();
-        time.time.minute=current_time.minute();
-        time.time.hours=current_time.hour();
-        time.time.day=current_date.day();
-        time.time.month=current_date.month();
-        time.time.year=current_date.year()-2000;
+        time.time.seconds=(uint32_t)current_time.second();
+        time.time.minute=(uint32_t)current_time.minute();
+        time.time.hours=(uint32_t)current_time.hour();
+        time.time.day=(uint32_t)current_date.day();
+        time.time.month=(uint32_t)current_date.month();
+        time.time.year=(uint32_t)current_date.year()-2000;
         hwp->communicationBluetooth.data[1]=time.data>>24;
         hwp->communicationBluetooth.data[2]=time.data>>16;
         hwp->communicationBluetooth.data[3]=time.data>>8;
@@ -114,7 +114,7 @@ void BluetoothAppProtocol::setup_timeout_f(void){  //设置超时时间
     hwp->communicationBluetooth.label[0]=0;
     hwp->communicationBluetooth.cmd_id[0]=2; //进入setupf
     hwp->communicationBluetooth.data[0]=setup_timeout;
-    hwp->communicationBluetooth.data[1]=1000; //设置超时时间
+    hwp->communicationBluetooth.data[1]=(uint8_t)1000; //设置超时时间
     hwp->Send_bluetoothdata(2);
 
 }

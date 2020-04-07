@@ -6,7 +6,6 @@
 #include <QTimer>
 #include <QTime>
 #include <QMessageBox>
-#include <QTextCodec>
 #include <QFileDialog>
 #include <QFile>
 #include "upload.h"

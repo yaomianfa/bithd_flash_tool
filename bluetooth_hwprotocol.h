@@ -4,17 +4,12 @@
 #include <QWidget>
 #include <QTimer>
 #include <QBluetoothLocalDevice>
-#include <QBluetoothSocket>
 #include <QBluetoothDeviceDiscoveryAgent>
 #include <QMessageBox>
 #include <QBluetoothServiceInfo>
-#include <QList>
-#include <QListWidgetItem>
-#include <cstring>
 #include <QMetaEnum>
 #include <QLowEnergyController>
 #include <QLowEnergyCharacteristic>
-#include <QMutex>
 typedef struct BluetoothDataStruct
 {
     uint8_t *label;
@@ -40,8 +35,8 @@ class Bluetooth_HWprotocol : public QWidget
 public:
     explicit Bluetooth_HWprotocol(QWidget *parent = 0);
     ~Bluetooth_HWprotocol();
-    void Bluetooth_HWprotocol::searchCharacteristic();
-    void Bluetooth_HWprotocol::ble_tx(QByteArray);
+    void searchCharacteristic();
+    void ble_tx(QByteArray);
     uint16_t bd_crc16(uint16_t crc, uint8_t const *buffer, uint16_t len);
     uint16_t crc16_byte(uint16_t crc, const uint8_t data);
 
@@ -63,7 +58,6 @@ private slots:
     void addBlueToothDevicesToList( const QBluetoothDeviceInfo &info );
     void bluetoothConnectedEvent();
     void bluetoothDisconnectedEvent();
-    void bluetoothErrorEvent(QBluetoothSocket::SocketError);
     void BlueServiceDiscovered(QBluetoothUuid gatt);
     void BlueServiceScanDone();
     void BleServiceCharacteristicRead(QLowEnergyCharacteristic,QByteArray);

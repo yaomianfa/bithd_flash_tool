@@ -64,10 +64,6 @@ void Bluetooth_HWprotocol::bluetoothConnectedEvent(){
 void Bluetooth_HWprotocol::bluetoothDisconnectedEvent(){
 
 }
-void Bluetooth_HWprotocol::bluetoothErrorEvent(QBluetoothSocket::SocketError error){
-    QMetaEnum metaEnum = QMetaEnum::fromType<QBluetoothSocket::SocketError>();
-    QMessageBox::information(NULL, "error", metaEnum.valueToKey(error));
-}
 
 void Bluetooth_HWprotocol::BlueServiceDiscovered(QBluetoothUuid gatt){
 //    qDebug()<<gatt.toString();
